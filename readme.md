@@ -1,4 +1,4 @@
-Zane WordPress Admin Bar
+Zane WordPress Plugin Admin Bar
 ===
 
 v0.1
