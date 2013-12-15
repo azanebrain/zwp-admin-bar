@@ -22,33 +22,12 @@ function z_debug_logic( $args = array() ){
 }
 
 function wp_set_admin_bar_color($path_to_z_wp_admin_bar_dir = "functions/") {
-
-	//Figure out the path to the z-wp-admin-bar directory
-	if( ! is_child_theme() ){
-	    $path_to_z_wp_admin_bar_dir = get_bloginfo('template_directory') . "/";
-	} else {
-	    $path_to_z_wp_admin_bar_dir = dirname( get_bloginfo('stylesheet_url') ) . "/";
-	}//if child_theme
-
-	if( has_filter("z_wp_admin_bar_dir") ) {
-		//If the developer has set the path
-		$path_to_z_wp_admin_bar_dir = $path_to_z_wp_admin_bar_dir . apply_filters("z_wp_admin_bar_dir", "");
-	} else {
-		$zwp_admin_bar_default_dir_path = "functions/"; //The default path to the z-wp-admin-bar directory
-		$path_to_z_wp_admin_bar_dir = $path_to_z_wp_admin_bar_dir . $zwp_admin_bar_default_dir_path;
-	}//if has_filter
-
-	//Now we will see if the target CSS file actually exists.
+	//See if the target CSS file actually exists.
 	//If it does not, we will display an error
 	//We find the file by getting the full URL to the path, and using is_file() to see if it is there
-	$path_to_z_wp_admin_bar_dir_file = $path_to_z_wp_admin_bar_dir; //First, start with the full URL to the target CSS file
-	$path_to_z_wp_admin_bar_dir_file = str_replace( "http://" , "" , $path_to_z_wp_admin_bar_dir_file ); //remove 'http://' 
-	$path_to_z_wp_admin_bar_dir_file = str_replace( $_SERVER['HTTP_HOST'] , '' , $path_to_z_wp_admin_bar_dir_file ); //Remove the host name from the URL
-	$path_to_z_wp_admin_bar_dir_file = $_SERVER['DOCUMENT_ROOT'] . $path_to_z_wp_admin_bar_dir_file;
-	//Add the file path to the website's root
-	$path_to_z_wp_admin_bar_dir_file = $path_to_z_wp_admin_bar_dir_file . 'z-wp-admin-bar/styles/'.WP_ENV.'.css'; //add the path to the CSS file (we know it will be z-wp-admin-bar/styles/<the wordpress environment>.css)
 
-	$zwp_adminbar_style_file = $path_to_z_wp_admin_bar_dir . 'z-wp-admin-bar/styles/'.WP_ENV.'.css'; //Create a WordPress-friendly path to the css file for when we enqueue it
+	$zwp_adminbar_style_file = plugins_url( 'styles/'.WP_ENV.'.css', __FILE__ ); //the file to enqueue
+	$path_to_z_wp_admin_bar_dir_file = plugin_dir_path( __FILE__ ) . 'styles/'.WP_ENV.'.css' ; //the path to the file to test with is_file
 
 	//Now enqueue the stylesheet if it exists:
 	if( is_file( $path_to_z_wp_admin_bar_dir_file ) ) {
