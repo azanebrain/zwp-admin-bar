@@ -135,24 +135,26 @@ function zwp_add_admin_bar_link() {
 
 /* Modify the WordPress Admin Bar
  */
-
-
-//Only run this code if the admin bar is showing
-if( is_admin_bar_showing() )
-	add_action( 'wp_before_admin_bar_render', 'zwp_admin_bar' );
+add_action( 'wp_before_admin_bar_render', 'zwp_admin_bar' );
 
 function zwp_admin_bar( ) {
-	global $wp_admin_bar;
 
-	//If the WordPress Environment has not been defined, assume local
-	if ( 'WP_ENV' == WP_ENV ){
-		define('WP_ENV', 'local');
-	}
+	//Only run this code if the admin bar is showing
+	if( is_admin_bar_showing() ){
 
-	//Run each function to modify the admin bar
-	zwp_set_admin_bar_color();
-	zwp_remove_wordpress_admin_bar_links();
-	zwp_add_admin_bar_link();
+		global $wp_admin_bar;
+
+		//If the WordPress Environment has not been defined, assume local
+		if ( 'WP_ENV' == WP_ENV ){
+			define('WP_ENV', 'local');
+		}
+
+		//Run each function to modify the admin bar
+		zwp_set_admin_bar_color();
+		zwp_remove_wordpress_admin_bar_links();
+		zwp_add_admin_bar_link();
+	}//if is_admin_bar_showing
+
 }//wp_set_admin_bar_color
 
 /* Hide this plugin from the plugin list once it is activated
