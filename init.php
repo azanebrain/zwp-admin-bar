@@ -1,5 +1,13 @@
 <?php
-//Change the color of the admin bar depending on what environment the user is in
+/**
+ * Plugin Name: ZWP Admin Bar
+ * Plugin URI: https://github.com/AJZane/zwp-admin-bar
+ * Description: Change the color of the admin bar depending on what environment the user is in
+ * Version: 0.3
+ * Author: AJ Zane
+ * Author URI: http://AJZane.com
+ * License: GPL2
+ */
 
 function z_debug_logic( $args = array() ){
 	//arguments:
