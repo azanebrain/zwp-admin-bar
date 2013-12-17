@@ -39,7 +39,7 @@ function zwp_set_admin_bar_color() {
 	if( is_file( $path_to_z_wp_admin_bar_dir_file ) ) {
 		// add_action( 'wp_enqueue_scripts', 'wp_set_admin_bar_color' );
 		// wp_enqueue_style('admin_bar', $zwp_adminbar_style_file, array(), false, 'all'); 
-		wp_enqueue_style('admin_bar', $zwp_adminbar_style_file , array(), false, 'all'); 
+		wp_enqueue_style('admin_bar', $zwp_adminbar_style_file , array(), false, 'screen'); 
 	} else if ( 
 		! has_filter("z_debug") && 'prod' != WP_ENV
 		|| has_filter("z_debug") && "off" != apply_filters("z_debug", "")
