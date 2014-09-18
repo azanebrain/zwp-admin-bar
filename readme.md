@@ -31,6 +31,11 @@ Right now the options are:
 - stage
 - prod
 
+For example, to set the development environment use: 
+```php
+define('WP_ENV', 'dev');
+```
+
 zwp_set_admin_bar_color() determines which CSS file to use based on the WP_ENV constant
 
 zwp_remove_wordpress_admin_bar_links() prevents users from seeing certain options (such as update plugins or moderate comments) if they don't have the role capability to do so
